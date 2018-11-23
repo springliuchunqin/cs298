@@ -32,7 +32,7 @@ public class CS298_Main {
 		LinkedHashSet<String> webs = new LinkedHashSet<String>();
 		HashMap<String, Integer> catNameSet = new HashMap<String, Integer>();
 		webs.addAll(VisitedURL.visitedURLs());//将所浏览的网址添加到webs中
-		
+		//我修改了这一行的注释  在TEAM里面先commit 然后 pull 最后push 这是最简单的操作  
 	    ArrayList<String> web_1 = new ArrayList<String>(webs);//将webs数据循环添加给web_1
 	    int indCount = 0;
 	    //限制网络类别数最大为15
