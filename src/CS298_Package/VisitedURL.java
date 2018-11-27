@@ -31,13 +31,7 @@ public class VisitedURL {
 	        Integer count = 200;
 	        resultSet = statement
 		            .executeQuery ("SELECT url FROM moz_places order by visit_count desc");
-//	        resultSet = statement
-//	            .executeQuery ("SELECT * FROM moz_hosts");
-	//
-//	        while (resultSet.next ()) 
-//	            {
-//	            System.out.println ("URL [" + resultSet.getString ("host") + "]");
-//	            }
+
 	        while (resultSet.next()) 
 	        {
 	        	//System.out.println ("URL [" + resultSet.getString ("url") + "]");
@@ -63,17 +57,7 @@ public class VisitedURL {
 	    } 
 	    if(websites.size() > 0)
 	    	webs.addAll(websites);
-	    
-	    //System.out.println(webs.size());
-	    
-//	    ArrayList<String> web_1 = new ArrayList<String>(webs);
-//	    
-//	    for(int i = 0; i < webs.size(); i++){
-//	    	if(web_1.get(i).length() > 0)
-//	    		System.out.println("URL : "+web_1.get(i));
-//	    }
-//	    
-//	    System.out.println("length = "+webs.size());
+
 	    return webs;
 	}
 

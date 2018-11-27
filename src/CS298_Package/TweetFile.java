@@ -53,6 +53,7 @@ public class TweetFile {
      * Creates a OAuthConsumer with the current consumer & user access tokens and secrets
      * @return consumer
      */
+    //使用当前使用者和用户访问令牌和秘密创建OAuthConsumer
     public static OAuthConsumer GetConsumer()
     {
         OAuthConsumer consumer = new DefaultOAuthConsumer(CONSUMER_KEY,CONSUMER_SECRET);
@@ -66,18 +67,19 @@ public class TweetFile {
      * @return a list of friend's ids
      * @throws Exception 
      */
-    
+    //检索用户的好友列表
     public ArrayList<String> getFriends(String username) throws Exception
     {
     	BufferedReader bRead = null;
-    	ArrayList<String> friends = new ArrayList<String>();
-    	JSONArray statuses = new JSONArray();
+    	ArrayList<String> friends = new ArrayList<String>();//定义一组string类型的动态数组用于存放friends
+    	JSONArray statuses = new JSONArray();//由JSONObject构成的数组,格式: [{},{},...,{}]
 		try {
 			System.out.println("Processing status messages of " + username);
 			URL url = null;    
-			url = new URL("https://api.weibo.com/1.1/users/lookup.json?screen_name=" + username);
+			//获取用户的关注列表
+			url = new URL("https://api.weibo.com/2/friendships/followers.json?screen_name=" + username);
 			HttpURLConnection huc1 = (HttpURLConnection) url.openConnection();
-            huc1.setReadTimeout(5000);
+            huc1.setReadTimeout(5000);//读取超时设置
             Consumer.sign(huc1);
             huc1.connect();
 		   	BufferedReader bRead1 = new BufferedReader(new InputStreamReader((InputStream) huc1.getInputStream()));
@@ -177,7 +179,7 @@ public class TweetFile {
      * @return a list of status messages
      * @throws Exception 
      */
-    
+    //检索用户的状态信息
     public ArrayList<String> getTweets(String username) throws Exception
     {
     	BufferedReader bRead = null;
@@ -349,6 +351,9 @@ public class TweetFile {
 		ArrayList<String> nouns = new ArrayList<String>();
 		MaxentTagger tagger = new MaxentTagger(
 				"E:\\stanford-postagger-2018-02-27\\models\\english-left3words-distsim.tagger");
+		//中文
+		//MaxentTagger tagger = new MaxentTagger(
+		//		"E:\\stanford-postagger-full-2014-01-04\\models\\chinese-distsim.tagger");
 		int listCount = 0;
 //		for (int i = 0; i < tweets.size(); i++) {
 //			List<List<HasWord>> sentences = tagger
@@ -421,6 +426,7 @@ public class TweetFile {
      * @return
      * @throws Exception
      */
+	//根据ID获取朋友的详细信息, 获取姓名和国家
     public HashMap<String, Integer> getFriendDetails(ArrayList<String> friends) throws Exception {
     	HashMap<String, Integer> friendDetails = new HashMap<String, Integer>();
     	
@@ -540,6 +546,7 @@ public class TweetFile {
      * @param passedMap
      * @return
      */
+    //排序
     public LinkedHashMap<String, Integer> sortHashMapByValuesDesc(HashMap<String, Integer> passedMap) {
     	   List mapKeys = new ArrayList(passedMap.keySet());
     	   List mapValues = new ArrayList(passedMap.values());
