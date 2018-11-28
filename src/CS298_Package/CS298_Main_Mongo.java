@@ -34,12 +34,13 @@ public class CS298_Main_Mongo {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		LinkedHashSet<String> webs = new LinkedHashSet<String>();
-		HashMap<String, Integer> catNameSet = new HashMap<String, Integer>();
+		LinkedHashSet<String> webs = new LinkedHashSet<String>();//存放浏览网址
+		HashMap<String, Integer> catNameSet = new HashMap<String, Integer>();//类别，次数
 		webs.addAll(VisitedURL.visitedURLs());
 		
 	    ArrayList<String> web_1 = new ArrayList<String>(webs);
-	    int indCount = 0;
+	    
+	    int indCount = 0;//限制网址个数15
 	    if(webs.size() > 15)
 	    	indCount = 15;
 	    else
@@ -48,12 +49,12 @@ public class CS298_Main_Mongo {
 	    	if(web_1.get(i).length() > 0)
 	    	{
 	    		HashSet<String> catNameSetTemp = new HashSet<String>();
-	    		catNameSetTemp.addAll(webCategory(web_1.get(i)));
+	    		catNameSetTemp.addAll(webCategory(web_1.get(i)));//判断网络类别
 	    		if(catNameSetTemp.size() > 0) {
 	    			Iterator itr = catNameSetTemp.iterator();
 	    			while (itr.hasNext()) {
 	    				String cur_key = (String) itr.next();
-	    				if(catNameSet.containsKey(cur_key)) {
+	    				if(catNameSet.containsKey(cur_key)) {//如果已有类别中有该类别，则次数累加；否则新建
 	    					Integer cur_val = catNameSet.get(cur_key);
 	    					cur_val = cur_val + 1;
 	    					catNameSet.put(cur_key, cur_val);

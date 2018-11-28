@@ -87,13 +87,13 @@ public class CS298_Main_Thread implements Runnable{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		CS298_Main_Thread R1 = new CS298_Main_Thread( "Thread-1");
+		CS298_Main_Thread R1 = new CS298_Main_Thread( "Thread-1");//tweetsAnalysis
 	    R1.start();
 	    
-	    CS298_Main_Thread R3 = new CS298_Main_Thread( "Thread-3");
+	    CS298_Main_Thread R3 = new CS298_Main_Thread( "Thread-3");//webCategory
 	    R3.start();
 	      
-	    CS298_Main_Thread R2 = new CS298_Main_Thread( "Thread-2");
+	    CS298_Main_Thread R2 = new CS298_Main_Thread( "Thread-2");//friendAnalysis
 	    R2.start();
 	}
 
